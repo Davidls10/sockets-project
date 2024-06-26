@@ -1,4 +1,4 @@
-  GNU nano 6.2                                                                                         client.c                                                                                                  #include <arpa/inet.h>
+#include <arpa/inet.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
