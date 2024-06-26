@@ -27,7 +27,10 @@ int main(int argc, char const *argv[]) {
 		exit(EXIT_FAILURE);
 	}
 	address.sin_family = AF_INET;
-	address.sin_addr.s_addr = INADDR_ANY;
+        if (address.sin_addr.s_addr = inet_addr("192.168.100.221") == INADDR_NONE) {
+                perror("Convert address failed");
+                return -1;
+        }
 	address.sin_port = htons(PORT);
 
 	if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) < 0) {
