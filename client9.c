@@ -56,7 +56,7 @@ int main(int argc, char const* argv[]) {
         }
 
         while ((b = fread(buffer_data, 1, sizeof(buffer_data), file_to_send)) > 0) {
-            send(client_socket, buffer_data, bytes_read, 0);
+            send(client_socket, buffer_data, b, 0);
         }
 
         fclose(file_to_send);
@@ -68,13 +68,13 @@ int main(int argc, char const* argv[]) {
             perror("Erro ao criar list");
         }
 
-        while (((b = recv(client_socket, buffer_data, sizeof(buffer_data), 0)) > 0) {
+        while ((b = recv(client_socket, buffer_data, sizeof(buffer_data), 0)) > 0) {
             fwrite(buffer_data, 1, b, received_list);
         }
 	if (b < 0) perror("Erro ao receber lista");
 
         fclose(received_list);
-        printf("Lista recebida e salva no arquivo list");
+        printf("Lista recebida e salva no arquivo list\n");
     } else {
         printf("Opção inválida.\n");
     }
